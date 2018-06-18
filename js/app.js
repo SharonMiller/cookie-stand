@@ -19,7 +19,7 @@ var collegeAndPence = {
   minCust: 23,
   maxCust: 65,
   avgCookiePerSale: 6.3,
-  hours: [],
+  hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
   randomCust: function () {
     //TODO: fix math
     return Math.floor(Math.random() * this.minCust + this.maxCust);
@@ -36,8 +36,9 @@ console.log(collegeAndPence.cookiesHour());
 
 //calculate the hours with a for loop
 for ( hours = 0; hours < 15; hours++) {
-  console.log(hours + ' hours');
-};
+  collegeAndPence.cookiesPerHour.push(collegeAndPence.cookiesHour());
+}
+console.log(collegeAndPence.cookiesPerHour);
 
 // var chandlerAnd14th = {
 //   name: 'Chandler and 14th',
