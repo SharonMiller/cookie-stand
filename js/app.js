@@ -10,39 +10,68 @@
 //4  Store the results for each location in a separate array... perhaps as a property of the object representing that location
 
 // 5 Display the values of each array as unordered lists in the browser
-
+//names of stores collegeAndPence, chandlerAnd14th, fresnoAnd14th, minnesotaAndBond, neNeffAndNeWilliamson
+// var stores = [];
+// var storeListUlEl = document.getElementById('store-list');
+var hours;
 var collegeAndPence = {
+  name: 'College And Pence',
   minCust: 23,
   maxCust: 65,
-  avgCookieSale: 6.3,
-  cookiesPerHour: Math.floor(Math.random() * minCust + maxCust),
+  avgCookiePerSale: 6.3,
+  hours: [],
+  randomCust: function () {
+    //TODO: fix math
+    return Math.floor(Math.random() * this.minCust + this.maxCust);
+  },
+  cookiesHour: function () {
+    return this.avgCookiePerSale * this.randomCust();
+  },
+  cookiesPerHour: []
+};
+console.log(collegeAndPence.randomCust());
+console.log(collegeAndPence.cookiesHour());
+// console.log(collegeAndPence);
+
+
+//calculate the hours with a for loop
+for ( hours = 0; hours < 15; hours++) {
+  console.log(hours + ' hours');
 };
 
-var chandlerAnd14th = {
-  minCust: 3,
-  maxCust: 24,
-  avgCookieSale: 1.2,
-  cookiesPerHour: Math.floor(Math.random() * minCust + maxCust),
-};
+// var chandlerAnd14th = {
+//   name: 'Chandler and 14th',
+//   minCust: 3,
+//   maxCust: 24,
+//   avgCookieSale: 1.2,
+//   randomCust: Math.floor(Math.random() * minCust + maxCust),
+// };
 
-var fresnoAnd14th = {
-  minCust: 11,
-  maxCust: 38,
-  avgCookieSale: 3.7,
-  cookiesPerHour: Math.floor(Math.random() * minCust + maxCust),
-};
+// var fresnoAnd14th = {
+//   name: 'Fresno and 14th',
+//   minCust: 11,
+//   maxCust: 38,
+//   avgCookieSale: 3.7,
+//   randomCust: Math.floor(Math.random() * minCust + maxCust),
+// };
 
-var minnesotaAndBond = {
-  minCust: 20,
-  maxCust: 38,
-  avgCookieSale: 2.3,
-  cookiesPerHour: Math.floor(Math.random() * minCust + maxCust),
-};
+// var minnesotaAndBond = {
+//   name: 'Minnesota and Bond',
+//   minCust: 20,
+//   maxCust: 38,
+//   avgCookieSale: 2.3,
+//   randomCust: Math.floor(Math.random() * minCust + maxCust),
+// };
 
-var neNeffAndeNeWilliamson = {
-  minCust: 2,
-  maxCust: 16,
-  avgCookieSale: 4.6,
-  cookiesPerHour: Math.floor(Math.random() * minCust + maxCust),
-};
+// var neNeffAndNeWilliamson = {
+//   name: 'NE Neff and NE Williamson',
+//   minCust: 2,
+//   maxCust: 16,
+//   avgCookieSale: 4.6,
+//   randomCust: Math.floor(Math.random() * minCust + maxCust),
+// };
 
+// render: function () {
+//   var liEl = document.createElement('li');
+//   console.log(lieEl.textContent);
+// };
