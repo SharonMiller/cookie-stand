@@ -21,7 +21,6 @@ collegeAndPence.randomCust = function () {
 collegeAndPence.calculateCustomersPerHour = function () {
   for(var i in hourArray){
     this.customersPerHour[i] = (this.randomCust());
-    // console.log(this.customersPerHour[i]);
   }
 };
 //function to calculate total cookies per hour - create variables and then a loop to move through the array.
@@ -31,102 +30,257 @@ collegeAndPence.calculateCookiesPerHour = function () {
     this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
     this.totalCookies += this.cookiesPerHour[i];
   }
-  // console.log(this.cookiesPerHour);
-  // console.log(this.totalCookies);
 };
 
 
-
-//write cookies per hour to HTML
+//write cookies per hour to HTML render
 collegeAndPence.showHtmlCookiesPerHour = function(){
   this.calculateCookiesPerHour();
   //create header
   var h1El = document.createElement('h1');
   h1El.textContent = this.name;
   storeContainer.appendChild(h1El);
-  //creat unordered list
+  //create unordered list
   var ulEl = document.createElement('ul');
+  var liEl = '';
   for (var i in hourArray) {
-    var liEl = document.createElement('li');
+    liEl = document.createElement('li');
     liEl.textContent = hourArray[i] + (': ') + this.cookiesPerHour[i] + ' cookies';
     ulEl.appendChild(liEl);
-    storeContainer.appendChild(ulEl);
     console.log(liEl.textContent);
     console.log(this.cookiesPerHour[i]);
   }
+  liEl = document.createElement('li');
   liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
+  ulEl.appendChild(liEl);
+  storeContainer.appendChild(ulEl);
 };
 
-
+//invoking function
 collegeAndPence.showHtmlCookiesPerHour();
 
 
+//Chandler and Pence
+
+var chandlerAnd14th = {
+  name: 'Chandler and 14th',
+  minCust: 3,
+  maxCust: 24,
+  avgCookiePerSale: 1.2,
+  customersPerHour: [],
+  cookiesPerHour: [],
+  totalCookies: 0,
+};
+//create random number of customers using a method
+chandlerAnd14th.randomCust = function () {
+  return Math.floor(Math.random() * (this.maxCust - this.minCust) + this.maxCust);
+};
+//create loop for customers per hour
+chandlerAnd14th.calculateCustomersPerHour = function () {
+  for(var i in hourArray){
+    this.customersPerHour[i] = (this.randomCust());
+  }
+};
+//function to calculate total cookies per hour - create variables and then a loop to move through the array.
+chandlerAnd14th.calculateCookiesPerHour = function () {
+  this.calculateCustomersPerHour();
+  for (var i in hourArray) {
+    this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
+    this.totalCookies += this.cookiesPerHour[i];
+  }
+};
+
+//write cookies per hour to HTML
+chandlerAnd14th.showHtmlCookiesPerHour = function(){
+  this.calculateCookiesPerHour();
+  //create header
+  var h1El = document.createElement('h1');
+  h1El.textContent = this.name;
+  storeContainer.appendChild(h1El);
+  //create unordered list
+  var ulEl = document.createElement('ul');
+  var liEl = '';
+  for (var i in hourArray) {
+    liEl = document.createElement('li');
+    liEl.textContent = hourArray[i] + (': ') + this.cookiesPerHour[i] + ' cookies';
+    ulEl.appendChild(liEl);
+    console.log(liEl.textContent);
+    console.log(this.cookiesPerHour[i]);
+  }
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
+  ulEl.appendChild(liEl);
+  storeContainer.appendChild(ulEl);
+};
+
+//invoke function
+chandlerAnd14th.showHtmlCookiesPerHour();
+
+//Fresno and 14th
+
+var fresnoAnd14th = {
+  name: 'Fresno and 14th',
+  minCust: 11,
+  maxCust: 38,
+  avgCookiePerSale: 3.7,
+  customersPerHour: [],
+  cookiesPerHour: [],
+  totalCookies: 0,
+};
+//create random number of customers using a method
+fresnoAnd14th.randomCust = function () {
+  return Math.floor(Math.random() * (this.maxCust - this.minCust) + this.maxCust);
+};
+//create loop for customers per hour
+fresnoAnd14th.calculateCustomersPerHour = function () {
+  for(var i in hourArray){
+    this.customersPerHour[i] = (this.randomCust());
+  }
+};
+//function to calculate total cookies per hour - create variables and then a loop to move through the array.
+fresnoAnd14th.calculateCookiesPerHour = function () {
+  this.calculateCustomersPerHour();
+  for (var i in hourArray) {
+    this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
+    this.totalCookies += this.cookiesPerHour[i];
+  }
+};
+
+//write cookies per hour to HTML
+fresnoAnd14th.showHtmlCookiesPerHour = function(){
+  this.calculateCookiesPerHour();
+  //create header
+  var h1El = document.createElement('h1');
+  h1El.textContent = this.name;
+  storeContainer.appendChild(h1El);
+  //create unordered list
+  var ulEl = document.createElement('ul');
+  var liEl = '';
+  for (var i in hourArray) {
+    liEl = document.createElement('li');
+    liEl.textContent = hourArray[i] + (': ') + this.cookiesPerHour[i] + ' cookies';
+    ulEl.appendChild(liEl);
+    console.log(liEl.textContent);
+    console.log(this.cookiesPerHour[i]);
+  }
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
+  ulEl.appendChild(liEl);
+  storeContainer.appendChild(ulEl);
+};
+
+//invoke function
+fresnoAnd14th.showHtmlCookiesPerHour();
 
 
+//Minnesota and Bond
 
+var minnesotaAndBond = {
+  name: 'Minnesota and Bond',
+  minCust: 20,
+  maxCust: 38,
+  avgCookiePerSale: 2.3,
+  customersPerHour: [],
+  cookiesPerHour: [],
+  totalCookies: 0,
+};
+//create random number of customers using a method
+minnesotaAndBond.randomCust = function () {
+  return Math.floor(Math.random() * (this.maxCust - this.minCust) + this.maxCust);
+};
+//create loop for customers per hour
+minnesotaAndBond.calculateCustomersPerHour = function () {
+  for(var i in hourArray){
+    this.customersPerHour[i] = (this.randomCust());
+  }
+};
+//function to calculate total cookies per hour - create variables and then a loop to move through the array.
+minnesotaAndBond.calculateCookiesPerHour = function () {
+  this.calculateCustomersPerHour();
+  for (var i in hourArray) {
+    this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
+    this.totalCookies += this.cookiesPerHour[i];
+  }
+};
 
+//write cookies per hour to HTML
+minnesotaAndBond.showHtmlCookiesPerHour = function(){
+  this.calculateCookiesPerHour();
+  //create header
+  var h1El = document.createElement('h1');
+  h1El.textContent = this.name;
+  storeContainer.appendChild(h1El);
+  //create unordered list
+  var ulEl = document.createElement('ul');
+  var liEl = '';
+  for (var i in hourArray) {
+    liEl = document.createElement('li');
+    liEl.textContent = hourArray[i] + (': ') + this.cookiesPerHour[i] + ' cookies';
+    ulEl.appendChild(liEl);
+    console.log(liEl.textContent);
+    console.log(this.cookiesPerHour[i]);
+  }
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
+  ulEl.appendChild(liEl);
+  storeContainer.appendChild(ulEl);
+};
 
+//invoke function
+minnesotaAndBond.showHtmlCookiesPerHour();
 
-// cookiesHour = function  () {
-//   return this.avgCookiePerSale * this.randomCust();
-// };
+//Neff and Williamson
 
-// //calculate the hours with a for loop
-// for ( hours = 0; hours < 15; hours++) {
-//   collegeAndPence.cookiesPerHour.push(collegeAndPence.cookiesHour());
+var neffWilliamson = {
+  name: 'NE Neff and NE Williamson',
+  minCust: 2,
+  maxCust: 16,
+  avgCookiePerSale: 4.6,
+  customersPerHour: [],
+  cookiesPerHour: [],
+  totalCookies: 0,
+};
+//create random number of customers using a method
+neffWilliamson.randomCust = function () {
+  return Math.floor(Math.random() * (this.maxCust - this.minCust) + this.maxCust);
+};
+//create loop for customers per hour
+neffWilliamson.calculateCustomersPerHour = function () {
+  for(var i in hourArray){
+    this.customersPerHour[i] = (this.randomCust());
+  }
+};
+//function to calculate total cookies per hour - create variables and then a loop to move through the array.
+neffWilliamson.calculateCookiesPerHour = function () {
+  this.calculateCustomersPerHour();
+  for (var i in hourArray) {
+    this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
+    this.totalCookies += this.cookiesPerHour[i];
+  }
+};
 
-// collegeAndPence.render = function () {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = this.cookiesPerHour;
-//   storeListUlEl.appendChild();
-//   return toString.this.cookiesPerHour;
-// }
+//write cookies per hour to HTML
+neffWilliamson.showHtmlCookiesPerHour = function(){
+  this.calculateCookiesPerHour();
+  //create header
+  var h1El = document.createElement('h1');
+  h1El.textContent = this.name;
+  storeContainer.appendChild(h1El);
+  //create unordered list
+  var ulEl = document.createElement('ul');
+  var liEl = '';
+  for (var i in hourArray) {
+    liEl = document.createElement('li');
+    liEl.textContent = hourArray[i] + (': ') + this.cookiesPerHour[i] + ' cookies';
+    ulEl.appendChild(liEl);
+    console.log(liEl.textContent);
+    console.log(this.cookiesPerHour[i]);
+  }
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
+  ulEl.appendChild(liEl);
+  storeContainer.appendChild(ulEl);
+};
 
-
-
-// this code does not work:
-// liEl = document.createElement('li');
-
-// for (var i in this.cookiesPerHour) {
-//   liEl = document.createElement('li');
-
-//   liEl.textContent = collegeAndPence.cookiesPerHour[i].hours;
-//   liEl.appendChild(liEl);
-//   console.log(liEl.textContent);
-// }
-
-// liEl.textContent = collegeAndPence.cookiesPerHour;
-
-// console.log(collegeAndPence.cookiesPerHour);
-// var chandlerAnd14th = {
-//   name: 'Chandler and 14th',
-//   minCust: 3,
-//   maxCust: 24,
-//   avgCookieSale: 1.2,
-//   randomCust: Math.floor(Math.random() * minCust + maxCust),
-// };
-
-// var fresnoAnd14th = {
-//   name: 'Fresno and 14th',
-//   minCust: 11,
-//   maxCust: 38,
-//   avgCookieSale: 3.7,
-//   randomCust: Math.floor(Math.random() * minCust + maxCust),
-// };
-
-// var minnesotaAndBond = {
-//   name: 'Minnesota and Bond',
-//   minCust: 20,
-//   maxCust: 38,
-//   avgCookieSale: 2.3,
-//   randomCust: Math.floor(Math.random() * minCust + maxCust),
-// };
-
-// var neNeffAndNeWilliamson = {
-//   name: 'NE Neff and NE Williamson',
-//   minCust: 2,
-//   maxCust: 16,
-//   avgCookieSale: 4.6,
-//   randomCust: Math.floor(Math.random() * minCust + maxCust),
-// };
-
+//invoke function
+neffWilliamson.showHtmlCookiesPerHour();
