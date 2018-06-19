@@ -11,9 +11,12 @@
 
 // 5 Display the values of each array as unordered lists in the browser
 //names of stores collegeAndPence, chandlerAnd14th, fresnoAnd14th, minnesotaAndBond, neNeffAndNeWilliamson
-// var stores = [];
-// var storeListUlEl = document.getElementById('store-list');
+var stores = [];
+var liEl; 
+var storeListUlEl = document.getElementById('store-list');
+console.log(storeListUlEl.textContent);
 var hours;
+
 var collegeAndPence = {
   name: 'College And Pence',
   minCust: 23,
@@ -31,15 +34,32 @@ var collegeAndPence = {
 };
 console.log(collegeAndPence.randomCust());
 console.log(collegeAndPence.cookiesHour());
-// console.log(collegeAndPence);
+console.log(collegeAndPence);
 
 
 //calculate the hours with a for loop
 for ( hours = 0; hours < 15; hours++) {
   collegeAndPence.cookiesPerHour.push(collegeAndPence.cookiesHour());
 }
-console.log(collegeAndPence.cookiesPerHour);
 
+collegeAndPence.render = function () {
+  var liEl = document.createElement('li');
+  liEl.textContent = this.cookiesPerHour;
+  storeListUlEl.appendChild();
+};
+
+liEl = document.createElement('li');
+
+for (var i in this.cookiesPerHour) {
+  liEl = document.createElement('li');
+
+  liEl.textContent = this.cookiesPerHour[i].hours;
+  ulEl.appendChild(liEl);
+}
+
+liEl.textContent = this.cookiesPerHour;
+
+// console.log(collegeAndPence.cookiesPerHour);
 // var chandlerAnd14th = {
 //   name: 'Chandler and 14th',
 //   minCust: 3,
@@ -72,7 +92,3 @@ console.log(collegeAndPence.cookiesPerHour);
 //   randomCust: Math.floor(Math.random() * minCust + maxCust),
 // };
 
-// render: function () {
-//   var liEl = document.createElement('li');
-//   console.log(lieEl.textContent);
-// };
