@@ -3,7 +3,7 @@
 var storeTable = document.getElementById('store-table');
 var hourArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var storeArray = [];
-var hourArrayHeader = ['Store Locations','6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+// var hourArrayHeader = ['Store Locations','6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 //create constructor function Stores
 function Store(name, minCust, maxCust, avgCookiePerSale) {
@@ -46,13 +46,18 @@ Store.prototype.calculateCookiesPerHour = function (){
 };
 //create header row with hoursArray - need loop
 var makeHeaderRow = function() {
-  for(var i in hourArrayHeader) {
-    var trEl = document.createElement('tr');
-    var thEl = document.createElement('th');
-    thEl.textContent = hourArrayHeader[i];
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Store Locations';
+  trEl.appendChild(thEl);
+  console.log(trEl);
+  for(var i in hourArray) {
+    // trEl = document.createElement('tr');
+    thEl = document.createElement('th');
+    thEl.textContent = hourArray[i];
     trEl.appendChild(thEl);
-    storeTable.appendChild(thEl);
   }
+  storeTable.appendChild(trEl);
 };
 makeHeaderRow();
 //create table
@@ -71,8 +76,8 @@ Store.prototype.render = function(){
     tdEl = document.createElement('td');
     tdEl.textContent = this.cookiesPerHour[i];
     trEl.appendChild(tdEl);
-    storeTable.appendChild(trEl);
   }
+  storeTable.appendChild(trEl);
   //render store array
 };
 for(var i in storeArray) {
