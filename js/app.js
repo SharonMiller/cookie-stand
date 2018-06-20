@@ -39,7 +39,6 @@ Store.prototype.calculateCookiesPerHour = function (){
 
   for (var i in hourArray) {
     this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
-
     this.totalCookies += this.cookiesPerHour[i];
   }
 
@@ -84,14 +83,7 @@ for(var i in storeArray) {
   storeArray[i].render();
 }
 
-// render hourArray header row
-// for(var j in hourArray) {
-//   makeHeaderRow(hourArray[j]);
-// }
-
-
 // tdEl = document.createElement('td');
-// //add hourly breakdown of cookies
 // tdEl.textContent = this.totalCookies;
 // trEl.appendChild(tdEl);
 // storeTable.appendChild(tdEl);
