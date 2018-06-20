@@ -48,7 +48,21 @@ body {
 .backgroundbody{
   background: white;
   background-size: 100%, 90%;
-  padding: 10px;
+  padding: 20px;
+}
+.table, th, td {
+  border: 1px solid grey;
+  padding: 1px;
+  align-content: center;
+  text-align: left;
+  margin-left:auto; 
+  margin-right:auto; 
+  width:100px;
+  border-collapse: collapse;
+}
+.th {
+  align-content: center;
+  font-style: bold;
 }
 
 h1 {
@@ -113,4 +127,7 @@ ol {list-style-type: decimal;
   text-align: center;
   background:fcfdfe;
   max-width: 960px;
+}
+.sales {
+  text-align: center;
 }

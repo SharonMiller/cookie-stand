@@ -1,30 +1,63 @@
 'use strict';
 //create global variables
-var storeTable = document.getElementById('store-container');
+var storeTable = document.getElementById('store-table');
 var hourArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var storeArray = [];
+var hourArrayHeader = ['Store Locations','6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-//create function Stores
+//create constructor function Stores
 function Store(name, minCust, maxCust, avgCookiePerSale) {
   this.name = name;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookiePerSale = avgCookiePerSale;
-  this.cutomersPerHour = [];
+  this.customersPerHour = [];
   this.cookiesPerHour = [];
   this.totalCookies = 0;
 
+  //push new store into array
   storeArray.push(this);
 }
+// console.log(storeArray);
 //create Store Instances
 new Store ('College and Pence', 23, 65, 6.3);
-// new Store ('Chandler and 14th', 3, 24, 1.2);
-// new Store ('Fresno and 14th', 11, 38, 3.7);
-// new Store ('Minnesota and Bond', 20, 38, 2.3);
-// new Store ('NE NEff and NE Williamson', 2, 16, 4.6);
+new Store ('Chandler and 14th', 3, 24, 1.2);
+new Store ('Fresno and 14th', 11, 38, 3.7);
+new Store ('Minnesota and Bond', 20, 38, 2.3);
+new Store ('NE NEff and NE Williamson', 2, 16, 4.6);
 
+Store.prototype.randomCust = function () {
+  for(var i in hourArray){
+    var randomCust = Math.floor(Math.random() * (this.maxCust - this.minCust) + this.minCust);
+    this.customersPerHour[i] = randomCust;
+  }
+};
+
+Store.prototype.calculateCookiesPerHour = function (){
+  this.randomCust();
+  this.totalCookies = 0;
+
+  for (var i in hourArray) {
+    this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
+
+    this.totalCookies += this.cookiesPerHour[i];
+  }
+
+};
+//create header row with hoursArray - need loop
+var makeHeaderRow = function() {
+  for(var i in hourArrayHeader) {
+    var trEl = document.createElement('tr');
+    var thEl = document.createElement('th');
+    thEl.textContent = hourArrayHeader[i];
+    trEl.appendChild(thEl);
+    storeTable.appendChild(thEl);
+  }
+};
+makeHeaderRow();
 //create table
 Store.prototype.render = function(){
+  this.calculateCookiesPerHour();
   //create tr
   var trEl = document.createElement('tr');
   //create td 
@@ -33,82 +66,38 @@ Store.prototype.render = function(){
   tdEl.textContent = this.name;
   //append the TD to the TR
   trEl.appendChild(tdEl);
-  // creat td
-  tdEl = document.createElement('td');
-  //add hourly breakdown of cookies
-  tdEl.textContent = this.totalCookies;
-  trEl.appendChild(tdEl);
-  storeTable.appendChild(trEl);
+  //create for loop with array cookies per hour
+  for(var i in this.cookiesPerHour){
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.cookiesPerHour[i];
+    trEl.appendChild(tdEl);
+    storeTable.appendChild(trEl);
+  }
+  //render store array
 };
-storeArray[0].render();
+for(var i in storeArray) {
+  storeArray[i].render();
+}
+
+// render hourArray header row
+// for(var j in hourArray) {
+//   makeHeaderRow(hourArray[j]);
+// }
 
 
-//header row
-function makeHeaderRow() {
-  //create tr
-  var trEl = document.createElement('tr');
-  //create th
-  var thEl = document.createElement('th');
-  // give th content (hourArray)
-  thEl.textContent = hourArray;
-  // append the th to the tr
-  trEl.appendChild(thEl);
-};
-makeHeaderRow();
-// College and Pence
-// var collegeAndPence = {
-//   name: 'College And Pence',
-//   minCust: 23,
-//   maxCust: 65,
-//   avgCookiePerSale: 6.3,
-//   customersPerHour: [],
-//   cookiesPerHour: [],
-//   totalCookies: 0,
-// };
+// tdEl = document.createElement('td');
+// //add hourly breakdown of cookies
+// tdEl.textContent = this.totalCookies;
+// trEl.appendChild(tdEl);
+// storeTable.appendChild(tdEl);
+
 // create random number of customers using a method
-Store.prototype.randomCust = function () {
-  return Math.floor(Math.random() * (this.maxCust - this.minCust) + this.maxCust);
-};
-console.log(Store.prototype.randomCust());
-//create loop for customers per hour
-Store.prototype.calculateCustomersPerHour = function () {
-  for(var i in hourArray){
-    this.customersPerHour[i] = (this.randomCust());
-  }
-};
-//function to calculate total cookies per hour - create variables and then a loop to move through the array.
-Store.prototype.calculateCookiesPerHour = function () {
-  this.calculateCustomersPerHour();
-  for (var i in hourArray) {
-    this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
-    this.totalCookies += this.cookiesPerHour[i];
-  }
-};
-//write cookies per hour to HTML render
-Store.prototype.showHtmlCookiesPerHour = function(){
-  this.calculateCookiesPerHour();
-  //create header
-  var h1El = document.createElement('h1');
-  h1El.textContent = this.name;
-  storeContainer.appendChild(h1El);
-  //create unordered list
-  var ulEl = document.createElement('ul');
-  var liEl = '';
-  for (var i in hourArray) {
-    liEl = document.createElement('li');
-    liEl.textContent = hourArray[i] + (': ') + this.cookiesPerHour[i] + ' cookies';
-    ulEl.appendChild(liEl);
-    console.log(liEl.textContent);
-    console.log(this.cookiesPerHour[i]);
-  }
-  liEl = document.createElement('li');
-  liEl.textContent = 'Total: ' + this.totalCookies + ' cookies';
-  ulEl.appendChild(liEl);
-  storeContainer.appendChild(ulEl);
-};
 
-//invoking function
-Store.prototype.showHtmlCookiesPerHour();
+// console.log(Store.prototype.randomCust());
+//create loop for customers per hour
+
+
+
 
 
 // //Chandler and Pence
