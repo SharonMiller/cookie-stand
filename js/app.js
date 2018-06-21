@@ -3,7 +3,6 @@
 var storeTable = document.getElementById('store-table');
 var hourArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var storeArray = [];
-// var hourArrayHeader = ['Store Locations','6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 //create constructor function Stores
 function Store(name, minCust, maxCust, avgCookiePerSale) {
@@ -39,7 +38,6 @@ Store.prototype.calculateCookiesPerHour = function (){
 
   for (var i in hourArray) {
     this.cookiesPerHour[i] = Math.ceil(this.customersPerHour[i] * this.avgCookiePerSale);
-
     this.totalCookies += this.cookiesPerHour[i];
   }
 
@@ -65,7 +63,7 @@ Store.prototype.render = function(){
   this.calculateCookiesPerHour();
   //create tr
   var trEl = document.createElement('tr');
-  //create td 
+  //create td
   var tdEl = document.createElement('td');
   //create content (store name)
   tdEl.textContent = this.name;
@@ -83,21 +81,75 @@ Store.prototype.render = function(){
 for(var i in storeArray) {
   storeArray[i].render();
 }
+//footer total row
+function makeFooter() {
+var tdEl = document.createElement('td');
+trEl.textContent= 'Total:';
+storeTable.appendChild(trEl);
+var completeTotal = 0;
+for(var i in hourArray){
+  var totalHourly = 0;
+  for (var j in storeArray){
+    
+  }
 
-// render hourArray header row
-// for(var j in hourArray) {
-//   makeHeaderRow(hourArray[j]);
-// }
+}
 
+}
+makeFooter();
 
 // tdEl = document.createElement('td');
-// //add hourly breakdown of cookies
 // tdEl.textContent = this.totalCookies;
 // trEl.appendChild(tdEl);
 // storeTable.appendChild(tdEl);
 
-// create random number of customers using a method
+//create form//
+//create globa variables
 
-// console.log(Store.prototype.randomCust());
-//create loop for customers per hour
 
+// function formSubmit(event) {
+//   event.preventDefault();
+//   // console.log('submit button clicked');
+//   if (!event.target.name.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.avgCookiePerSale.value ) {
+//     return alert('Fields cannot be empty!');
+// }
+
+//event handler function
+function handlerFormSubmit(event) {
+  event.preventDefault();
+  if (!event.target.name.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.avgCookiesPerSale){
+    return alert ('Fields may not be empty');
+  }
+}
+
+
+// empties the form after comments are read
+// event.target.name.value = null;
+// event.target.minCust.value = null;
+// event.target.maxCust.value = null;
+// event.target.avgCookiesPerSale.value = null;
+
+// var name = event.target.name.value;
+// var minCust = parseInt(event.target.minCust.value);
+// var maxCust = parseInt(event.target.maxCust.value);
+// var avgCookiesPerSale = parseFloat(event.target.avgCookiesPerSale.value);
+
+
+
+
+  // console.log('log of the event object', event);
+  // console.log('log of the event.target', event.target);
+  // console.log('log of the event.target.name', event.target.name.value);
+  // console.log(event.target.minCust.value);
+
+  
+   
+var storeForm = document.getElementById('add-location');
+
+// var storeForm = document.getElementbyId ('store-form');
+//event listender form submit//
+storeForm.addEventListener('submit', handlerFormSubmit);
+
+
+// //event listender form submit//
+// storeForm.addEventListener('submit', handleFormSubmit);
