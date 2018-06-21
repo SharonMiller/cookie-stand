@@ -16,6 +16,7 @@ a:link, a:visited {
   text-align: center; 
   text-decoration: none;
   display: inline-block;
+  border-radius: 3px;
 }
 .topnav{
     overflow: hidden;
@@ -31,6 +32,46 @@ a:link, a:visited {
     display: flex;
     justify-content: space-around;
 }
+/* form styling */
+form {
+  margin:0 auto;
+  max-width: 500px;
+  padding: 2em;
+  /* border: 1px solid #666; */
+  border-radius: 15px;
+  background-color: #cdc9c7;
+  
+}
+
+form div + div {
+  margin-top: 1em;
+}
+
+label {
+  display: inline-block;
+  width: 200px;
+  text-align:left;
+  color: #666;
+  vertical-align: top;
+  
+  
+}
+ input, textarea {
+   font: 1em sans-serif;
+   border-radius: 5px;
+ }
+
+ textarea {
+vertical-align: top;
+height: 5em;
+ }
+ button {
+  padding-left:5px;
+  margin-left: .1em;
+  margin-top: 5px;
+}
+
+
 /* links change color when hovering */
 .topnav a:hover {
   background-color: #ddd;
@@ -43,7 +84,7 @@ body {
   padding: 10 px;
   max-width: 960px; 
   margin: auto;
-  background-size: auto s;
+  background-size: auto;
 }
 .backgroundbody{
   background: white;
@@ -122,12 +163,78 @@ ol {list-style-type: decimal;
   height: 100px;
 }
 .footer { 
-  padding:1em;
+  padding:30px;
   display: block;
   text-align: center;
   background:fcfdfe;
   max-width: 960px;
 }
+.footer a{
+  padding: .5em;
+}
 .sales {
   text-align: center;
+}
+.slider-holder
+{
+    width: 800px;
+    height: 400px;
+    background-color: yellow;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.image-holder
+{
+    width: 2400px;
+    background-color: red;
+    height: 400px;
+    clear: both;
+    position: relative;
+    
+    -webkit-transition: left 2s;
+    -moz-transition: left 2s;
+    -o-transition: left 2s;
+    transition: left 2s;
+}
+
+.slider-image
+{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
+
+#slider-image-1:target ~ .image-holder
+{
+    left: 0px;
+}
+
+#slider-image-2:target ~ .image-holder
+{
+    left: -800px;
+}
+
+#slider-image-3:target ~ .image-holder
+{
+    left: -1600px;
+}
+
+.button-holder
+{
+    position: relative;
+    top: -20px;
+}
+
+.slider-change
+{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+    background-color: brown;
 }
