@@ -48,26 +48,26 @@ var makeHeaderRow = function () {
   var thEl = document.createElement('th');
   thEl.textContent = 'Store Locations';
   trEl.appendChild(thEl);
-  console.log(trEl);
   for (var i in hourArray) {
     // trEl = document.createElement('tr');
     thEl = document.createElement('th');
     thEl.textContent = hourArray[i];
     trEl.appendChild(thEl);
   }
+  //make last cell in header row
+  // // trEl = document.createElement('tr');
+  thEl = document.createElement('th');
+  thEl.textContent = 'Daily Totals';
+  trEl.appendChild(thEl);
+
   storeTable.appendChild(trEl);
 };
-makeHeaderRow();
 //create table
 Store.prototype.render = function () {
   this.calculateCookiesPerHour();
-  //create tr
   var trEl = document.createElement('tr');
-  //create td
   var tdEl = document.createElement('td');
-  //create content (store name)
   tdEl.textContent = this.name;
-  //append the TD to the TR
   trEl.appendChild(tdEl);
   //create for loop with array cookies per hour
   for (var i in this.cookiesPerHour) {
@@ -75,81 +75,74 @@ Store.prototype.render = function () {
     tdEl.textContent = this.cookiesPerHour[i];
     trEl.appendChild(tdEl);
   }
+
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.totalCookies;
+  trEl.appendChild(tdEl);
   storeTable.appendChild(trEl);
   //render store array
 };
-for (var i in storeArray) {
-  storeArray[i].render();
+function renderAllStores() {
+  storeTable.innerHTML = '';
+
+  makeHeaderRow();
+
+  for (var i in storeArray) {
+    storeArray[i].render();
+  }
+  makeFooter();
+
 }
-// //footer total row
-// function makeFooter() {
-// var tdEl = document.createElement('td');
-// trEl.textContent= 'Total:';
-// storeTable.appendChild(trEl);
-// var completeTotal = 0;
-// for(var i in hourArray){
-//   var totalHourly = 0;
-//   for (var j in storeArray){
 
-//   }
+renderAllStores();
 
-// }
+//create footer row for total
+function makeFooter() {
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  trEl.appendChild(thEl);
+  thEl.textContent = 'Total:';
 
-// }
-// makeFooter();
+  for (var i in hourArray) {
+    var tdEl = document.createElement('td');
+    var totalHourly = 0;
 
-// tdEl = document.createElement('td');
-// tdEl.textContent = this.totalCookies;
-// trEl.appendChild(tdEl);
-// storeTable.appendChild(tdEl);
+    for (var j in storeArray) {
+      totalHourly += storeArray[j].cookiesPerHour[i];
+    }
+    tdEl.textContent = totalHourly;
+    trEl.appendChild(tdEl);
+    console.log('======hourly total + total hourly +=======');
+  }
+  storeTable.appendChild(trEl);
+}
 
-//create form//
-//create globa variables
-
-
-// function formSubmit(event) {
-//   event.preventDefault();
-//   // console.log('submit button clicked');
-//   if (!event.target.name.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.avgCookiePerSale.value ) {
-//     return alert('Fields cannot be empty!');
-// }
 
 //event handler function
 function handlerFormSubmit(event) {
   event.preventDefault();
+
   if (!event.target.name.value || !event.target.minCust.value || !event.target.maxCust.value || !event.target.avgCookiePerSale) {
     return alert('Fields may not be empty');
   }
+  var name = event.target.name.value;
+  var minCust = parseInt(event.target.minCust.value);
+  var maxCust = parseInt(event.target.maxCust.value);
+  var avgCookiePerSale = parseFloat(event.target.avgCookiePerSale.value);
+
+  event.target.name.value = null;
+  event.target.minCust.value = null;
+  event.target.maxCust.value = null;
+  event.target.avgCookiePerSale.value = null;
+  new Store(name, minCust, maxCust, avgCookiePerSale);
+  renderAllStores();
 }
-
-
-// empties the form after comments are read
-// event.target.name.value = null;
-// event.target.minCust.value = null;
-// event.target.maxCust.value = null;
-// event.target.avgCookiesPerSale.value = null;
-
-// var name = event.target.name.value;
-// var minCust = parseInt(event.target.minCust.value);
-// var maxCust = parseInt(event.target.maxCust.value);
-// var avgCookiesPerSale = parseFloat(event.target.avgCookiesPerSale.value);
-
-
-
-
-// console.log('log of the event object', event);
-// console.log('log of the event.target', event.target);
-// console.log('log of the event.target.name', event.target.name.value);
-// console.log(event.target.minCust.value);
 
 
 
 var storeForm = document.getElementById('add-location');
-
 // var storeForm = document.getElementbyId ('store-form');
 //event listender form submit//
 storeForm.addEventListener('submit', handlerFormSubmit);
 
 
-// //event listender form submit//
-// storeForm.addEventListener('submit', handleFormSubmit);
