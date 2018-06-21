@@ -90,6 +90,7 @@ function renderAllStores() {
   for (var i in storeArray) {
     storeArray[i].render();
   }
+
   makeFooter();
 
 }
@@ -98,25 +99,33 @@ renderAllStores();
 
 //create footer row for total
 function makeFooter() {
+  var bigDaddyTotal = 0;
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
   trEl.appendChild(thEl);
   thEl.textContent = 'Total:';
 
   for (var i in hourArray) {
-    var tdEl = document.createElement('td');
     var totalHourly = 0;
+    var tdEl = document.createElement('td');
 
     for (var j in storeArray) {
       totalHourly += storeArray[j].cookiesPerHour[i];
     }
     tdEl.textContent = totalHourly;
     trEl.appendChild(tdEl);
-    console.log('======hourly total + total hourly +=======');
-  }
-  storeTable.appendChild(trEl);
-}
 
+  }
+  for (var k in storeArray) {
+    bigDaddyTotal += storeArray[k].totalCookies;
+  }
+  thEl = document.createElement('th');
+  thEl.textContent = bigDaddyTotal;
+  trEl.appendChild(thEl);
+  storeTable.appendChild(trEl);
+  console.log(bigDaddyTotal);
+}
+// renderAllStores();
 
 //event handler function
 function handlerFormSubmit(event) {
@@ -145,4 +154,7 @@ var storeForm = document.getElementById('add-location');
 //event listender form submit//
 storeForm.addEventListener('submit', handlerFormSubmit);
 
-
+// console.log(bigDaddyTotal);
+// var thEl = document.createElement('th');
+// thEl.textContent = bigDaddyTotal;
+// trEl.appendChild(thEl);
