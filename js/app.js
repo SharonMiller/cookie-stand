@@ -154,7 +154,4 @@ var storeForm = document.getElementById('add-location');
 //event listender form submit//
 storeForm.addEventListener('submit', handlerFormSubmit);
 
-// console.log(bigDaddyTotal);
-// var thEl = document.createElement('th');
-// thEl.textContent = bigDaddyTotal;
-// trEl.appendChild(thEl);
+//slideshow

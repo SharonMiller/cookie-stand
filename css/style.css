@@ -16,6 +16,7 @@ a:link, a:visited {
   text-align: center; 
   text-decoration: none;
   display: inline-block;
+  border-radius: 3px;
 }
 .topnav{
     overflow: hidden;
@@ -31,6 +32,46 @@ a:link, a:visited {
     display: flex;
     justify-content: space-around;
 }
+/* form styling */
+form {
+  margin:0 auto;
+  max-width: 500px;
+  padding: 2em;
+  /* border: 1px solid #666; */
+  border-radius: 15px;
+  background-color: #cdc9c7;
+  
+}
+
+form div + div {
+  margin-top: 1em;
+}
+
+label {
+  display: inline-block;
+  width: 200px;
+  text-align:left;
+  color: #666;
+  vertical-align: top;
+  
+  
+}
+ input, textarea {
+   font: 1em sans-serif;
+   border-radius: 5px;
+ }
+
+ textarea {
+vertical-align: top;
+height: 5em;
+ }
+ button {
+  padding-left:5px;
+  margin-left: .1em;
+  margin-top: 5px;
+}
+
+
 /* links change color when hovering */
 .topnav a:hover {
   background-color: #ddd;
@@ -43,7 +84,7 @@ body {
   padding: 10 px;
   max-width: 960px; 
   margin: auto;
-  background-size: auto s;
+  background-size: auto;
 }
 .backgroundbody{
   background: white;
@@ -122,12 +163,45 @@ ol {list-style-type: decimal;
   height: 100px;
 }
 .footer { 
-  padding:1em;
+  padding:30px;
   display: block;
   text-align: center;
   background:fcfdfe;
   max-width: 960px;
 }
+.footer a{
+  padding: .5em;
+}
 .sales {
   text-align: center;
 }
+.store {
+  border: 25px grey;
+  padding: 25px;
+  margin: 10px;
+  max-width: 90%;
+  font-family: 'Open Sans Condensed', sans-serif;
+  line-height: 2em;
+  text-align: center;
+  font-size: 20px;
+}
+ 
+  .contact {
+  border: 25px grey;
+  padding: 25px;
+  max-width: 90%;
+  font-family: 'Open Sans Condensed', sans-serif;
+  line-height: 2em;
+  text-align: center;
+  font-size: 20px;
+}
+.storelist ul {
+  list-style-type: none;
+  margin-left: 30%;
+  display: inline-block;
+  line-height: 1em;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+
+}
+
